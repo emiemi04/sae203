@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="code_produit" id="code_produit">
     <label for="libelle">Libelle</label>
     <input type="text" name="libelle" id="libelle">
-    <label for="prix_unitaire">Prix unitaire (en roupis)</label>
+    <label for="prix_unitaire">Prix unitaire (en euros)</label>
     <input type="text" name="prix_unitaire" id="prix_unitaire">
     <input type="submit" name="submit" value="Submit">
 </form>

@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 
         $sql = sprintf(
                 "INSERT INTO %s (%s) values (%s)",
-                "clients",
+                "client",
                 implode(", ", array_keys($new_user)),
                 ":" . implode(", :", array_keys($new_user))
         );
