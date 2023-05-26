@@ -77,7 +77,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo '<select name="mon_select">';
     while ($row = $result->fetch_assoc()) {
-        echo '<option value="' . $row['id_prduit'] . '">' . $row['libelle'] . '</option>';
+        echo '<option value="' . $row['id_produit'] . '">' . $row['libelle'] . '</option>';
     }
     echo '</select>';
 } else {
