@@ -10,6 +10,8 @@ if (isset($_POST['submit'])) {
         
         $new_user = array(
             "adresse_livraison" => $_POST['adresse_livraison'],
+            "client" => $_POST['client'],
+            "produit" => $_POST['produit'],
         );
 
         $sql = sprintf(
@@ -37,59 +39,58 @@ if (isset($_POST['submit'])) {
 <form method="post">
   <label for="adresse_livraison">Adresse livraison</label>
   <input type="text" id="adresse_livraison" name="adresse_livraison">
-  <label for="nom-client">Nom du client</label>
-  <?php
-// Établir une connexion à la base de données
-$servername = "localhost";
-$username = "emilie";
-$password = "passwd";
-$dbname = "magasin";
+  
+  <label for="client">Nom du client</label>
+  <select name="client" id="client">
+     <?php
+     // Établir une connexion à la base de données
+     $servername = "localhost";
+     $username = "emilie";
+     $password = "passwd";
+     $dbname = "magasin";
+     
+     $conn = new mysqli($servername, $username, $password, $dbname);
+     
+     // Vérifier la connexion
+     if ($conn->connect_error) {
+         die("Connexion échouée : " . $conn->connect_error);
+     }
+     
+     // Exécuter une requête SQL pour récupérer les éléments de la table
+     $sql = "SELECT id_client, nom FROM client";
+     $result = $conn->query($sql);
+     
+     // Créer la balise <select> et ses options
+     if ($result->num_rows > 0) {
+         while ($row = $result->fetch_assoc()) {
+             echo '<option value="' . $row['id_client'] . '" name="client">' . $row['nom'] . '</option>';
+         }
+     } else {
+         echo "Aucun résultat trouvé.";
+     }
+     ?>
+  </select>
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connexion échouée : " . $conn->connect_error);
-}
-
-// Exécuter une requête SQL pour récupérer les éléments de la table
-$sql = "SELECT id_client, nom FROM client";
-$result = $conn->query($sql);
-
-// Créer la balise <select> et ses options
-if ($result->num_rows > 0) {
-    echo '<select name="mon_select">';
-    while ($row = $result->fetch_assoc()) {
-        echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';
-    }
-    echo '</select>';
-} else {
-    echo "Aucun résultat trouvé.";
-}
-?>
   <label for="produit">Produit</label>
- <?php 
+  <select name="produit" id="produit">
+  <?php 
   // Exécuter une requête SQL pour récupérer les éléments de la table
 $sql = "SELECT id_produit, libelle FROM produit";
 $result = $conn->query($sql);
 
 // Créer la balise <select> et ses options
 if ($result->num_rows > 0) {
-    echo '<select name="mon_select">';
     while ($row = $result->fetch_assoc()) {
-        echo '<option value="' . $row['id_produit'] . '">' . $row['libelle'] . '</option>';
+        echo '<option value="' . $row['id_produit'] . '" name="produit">' . $row['libelle'] . '</option>';
     }
-    echo '</select>';
 } else {
     echo "Aucun résultat trouvé.";
 }
-
-
 // Fermer la connexion à la base de données
 $conn->close();
 ?>
-
-  <br><br>
+  </select>
+  <br>
   <input type="submit" name="submit" value="Submit">
 </form>
 
