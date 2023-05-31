@@ -37,10 +37,7 @@ if (isset($_POST['submit'])) {
 <h2>Commander un produit</h2>
 
 <form method="post">
-  <label for="adresse_livraison">Adresse livraison</label>
-  <input type="text" id="adresse_livraison" name="adresse_livraison">
-  
-  <label for="client">Nom du client</label>
+  <label for="client">Nom du client</label><br>
   <select name="client" id="client">
      <?php
      // Établir une connexion à la base de données
@@ -70,8 +67,8 @@ if (isset($_POST['submit'])) {
      }
      ?>
   </select>
-
-  <label for="produit">Produit</label>
+<br>
+  <label for="produit">Produit</label><br>
   <select name="produit" id="produit">
   <?php 
   // Exécuter une requête SQL pour récupérer les éléments de la table
@@ -91,9 +88,16 @@ $conn->close();
 ?>
   </select>
   <br>
-  <input type="submit" name="submit" value="Submit">
+  <label class="block" for="adresse_livraison">
+    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+    Adresse de livraison
+    </span>
+    <input type="text" name="adresse_livraison" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block 
+    rounded-md sm:text-sm focus:ring-1" placeholder="Entrez votre adresse" />
+    </label>
+  <input type="submit" name="submit" class="mt-1 px-3 py-2 bg-blue-300 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" value="Envoyer" />
 </form>
-
+<br>
 <a href="index.php">Retour</a>
 
 <?php require "templates/footer.php"; ?>
