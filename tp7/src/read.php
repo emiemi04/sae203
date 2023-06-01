@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
         
         $new_user = array(
             "adresse_livraison" => $_POST['adresse_livraison'],
-            "client" => $_POST['client'],
-            "produit" => $_POST['produit'],
+            "id_client" => $_POST['id_client'],
+            "id_produit" => $_POST['id_produit'],
         );
 
         $sql = sprintf(
@@ -31,16 +31,17 @@ if (isset($_POST['submit'])) {
 
 <?php require "templates/header.php"; ?>
 
+<h2 class="ml-8 text-3xl text-sky-950">Commander un produit</h2><br>
+
+<form method="post" class="grid gap-2 place-content-center">
+
 <?php if (isset($_POST['submit']) && $statement) {
-    echo "<blockquote> commande effectuée avec succès</blockquote>";
+    echo "<br><blockquote>Commande effectuée avec succès !</blockquote><br>";
 }
 ?>
 
-<h2 class="text-3xl text-sky-950">Commander un produit</h2>
-
-<form method="post" class="grid grid-rows-3 gap-2 w-full place-content-center">
   Nom du client
-  <select name="client" id="client" class="border-cyan-900 px-3 py-2 
+  <select name="id_client" id="client" class="border-cyan-900 px-3 py-2 
     rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
      <?php
      // Établir une connexion à la base de données
@@ -60,10 +61,10 @@ if (isset($_POST['submit'])) {
      $sql = "SELECT id_client, nom FROM client";
      $result = $conn->query($sql);
      
-     // Créer la balise <select> et ses options
+     // Créer la balise <option> et ses options
      if ($result->num_rows > 0) {
          while ($row = $result->fetch_assoc()) {
-             echo '<option value="' . $row['id_client'] . '" name="client">' . $row['nom'] . '</option>';
+             echo '<option value="' . $row['id_client'] . '" name="id_client">' . $row['nom'] . '</option>';
          }
      } else {
          echo "Aucun résultat trouvé.";
@@ -72,23 +73,21 @@ if (isset($_POST['submit'])) {
   </select>
 
   Produit
-  <select name="produit" id="produit" class="border-cyan-900 px-3 py-2 
+  <select name="id_produit" id="produit" class="border-cyan-900 px-3 py-2 
     rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
   <?php 
   // Exécuter une requête SQL pour récupérer les éléments de la table
 $sql = "SELECT id_produit, libelle FROM produit";
 $result = $conn->query($sql);
 
-// Créer la balise <select> et ses options
+// Créer la balise <option> et ses options
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo '<option value="' . $row['id_produit'] . '" name="produit">' . $row['libelle'] . '</option>';
+        echo '<option value="' . $row['id_produit'] . '" name="id_produit">' . $row['libelle'] . '</option>';
     }
 } else {
     echo "Aucun résultat trouvé.";
 }
-// Fermer la connexion à la base de données
-$conn->close();
 ?>
   </select>
 
@@ -102,7 +101,9 @@ $conn->close();
 
 </form>
 
-<br>
-<a href="index.php">Retour</a>
+
+
+<a href="index.php" class="m-8 rounded-lg bg-cyan-900 
+border border-cyan-950 px-3 py-1 text-amber-200">Retour</a>
 
 <?php require "templates/footer.php"; ?>

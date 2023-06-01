@@ -14,6 +14,10 @@
 
 </head>
 
-<body class="m-8 bg-gradient-to-r from-amber-100 to-cyan-900 text-sky-950">
-	<H1 class="text-4xl font-extrabold ">Système simple de gestion d'un magasin</H1>
-	<br>
+<body class=" bg-gradient-to-r from-amber-100 to-cyan-600 text-sky-950 flex flex-col min-h-screen">
+	
+	<H1 class="text-4xl font-extrabold m-8">Système simple de gestion d'un magasin</H1>
+
+	
+
+	<div class="flex-grow">

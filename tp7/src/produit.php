@@ -31,14 +31,14 @@ if (isset($_POST['submit'])) {
 
 <?php require "templates/header.php"; ?>
 
-<?php if (isset($_POST['submit']) && $statement) {
-    echo "<blockquote>" . escape ($_POST['libelle']) . " ajouté avec succès</blockquote>";
-}
-?>
-
-<h2 class="text-3xl">Ajout d'un produit</h2>
+<h2 class="ml-8 text-3xl">Ajout d'un produit</h2><br>
 
 <form method="post" class="grid grid-rows-3 gap-8 place-content-center">
+
+<?php if (isset($_POST['submit']) && $statement) {
+    echo "<br><blockquote> Produit : " . escape ($_POST['libelle']) . " ajouté avec succès</blockquote><br>";
+}
+?>
     
     <input type="text" name="code_produit" placeholder="Code du produit" class="border border-cyan-900 px-3 py-2 
     rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"/>
@@ -55,6 +55,10 @@ if (isset($_POST['submit'])) {
 
 </form>
 <br>
-<a href="index.php">Retour</a>
+
+
+
+<a href="index.php" class="m-8 rounded-lg bg-cyan-900 
+border border-cyan-950 px-3 py-1 text-amber-200">Retour</a>
 
 <?php require "templates/footer.php"; ?>

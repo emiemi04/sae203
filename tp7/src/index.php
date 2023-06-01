@@ -1,6 +1,6 @@
 <?php include "templates/header.php"; ?>
 
-<ul class="mt-10 grid lg:grid-cols-4 gap-10">
+<ul class="m-8 mt-10 grid lg:grid-cols-4 gap-10">
 
 	<li>
 	<a href="create.php" class="group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-cyan-900/50 hover:ring-cyan-800">
