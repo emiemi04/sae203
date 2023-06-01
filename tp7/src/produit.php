@@ -2,7 +2,6 @@
 /* Utiliser un formulaire pour ajouter des produits dans la table 'produit'*/
 
 if (isset($_POST['submit'])) {
-    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
     
     require "../config.php";
     require "../common.php";
@@ -28,49 +27,31 @@ if (isset($_POST['submit'])) {
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMesscode_postal();
     }
+} ?>
+
+<?php require "templates/header.php"; ?>
+
+<?php if (isset($_POST['submit']) && $statement) {
+    echo "<blockquote>" . escape ($_POST['libelle']) . " ajouté avec succès</blockquote>";
 }
+?>
 
-require "templates/header.php";
+<h2 class="text-3xl">Ajout d'un produit</h2>
 
-if (isset($_POST['submit']) && $statement) :
-    echo "<blockquote" . escape ($_POST['code_produit']) . "ajouté avec succès</blockquote>";
-endif; ?>
-
-<h2>Ajout d'un produit</h2>
-
-<form method="post">
-    <label class="block" for="code_produit">
-    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 
-    block text-sm font-medium text-slate-700">
-    Code produit
-    </span>
-    <input type="text" name="nom" class="mt-1 px-3 py-2 bg-white border shadow-sm 
-    border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 
-    focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" 
-    placeholder="Code pour le produit" />
-    </label>
+<form method="post" class="grid grid-rows-3 gap-8 place-content-center">
     
-    <label class="block" for="libelle">
-    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block 
-    text-sm font-medium text-slate-700">
-    libelle
-    </span>
-    <input type="text" name="libelle" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 
-    placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 
-    block rounded-md sm:text-sm focus:ring-1" placeholder="Libelle du produit" />
-    </label>
+    <input type="text" name="code_produit" placeholder="Code du produit" class="border border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"/>
     
-    <label class="block" for="prix_unitaire">
-    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-    Prix unitaire
-    </span>
-    <input type="text" name="prix_unitaire" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 
-    placeholder-slate-400 focus:outline-none focus:border-sky-500 
-    focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" 
-    placeholder="Prix unitaire en euros" />
-    </label>
+    <input type="text" name="libelle" placeholder="Nom du produit" class="border border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"/>
+
+    <input type="text" name="prix_unitaire" placeholder="Prix du produit" class="border border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"/>
     
-    <input type="submit" name="submit" class="mt-1 px-3 py-2 bg-blue-300 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" value="Envoyer" />
+    <input type="submit" name="submit" class="px-3 py-2  bg-amber-100 border border-cyan-900 text-cyan-950
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600" 
+    value="Envoyer" />
 
 </form>
 <br>

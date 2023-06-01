@@ -30,15 +30,18 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php require "templates/header.php"; ?>
-<?php if (isset($_POST['submit']) && $statement) { ?>
-    <blockquote>Commande effectuée avec succès.</blockquote>
-<?php } ?>
 
-<h2>Commander un produit</h2>
+<?php if (isset($_POST['submit']) && $statement) {
+    echo "<blockquote> commande effectuée avec succès</blockquote>";
+}
+?>
 
-<form method="post">
-  <label for="client">Nom du client</label><br>
-  <select name="client" id="client">
+<h2 class="text-3xl text-sky-950">Commander un produit</h2>
+
+<form method="post" class="grid grid-rows-3 gap-2 w-full place-content-center">
+  Nom du client
+  <select name="client" id="client" class="border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
      <?php
      // Établir une connexion à la base de données
      $servername = "localhost";
@@ -67,9 +70,10 @@ if (isset($_POST['submit'])) {
      }
      ?>
   </select>
-<br>
-  <label for="produit">Produit</label><br>
-  <select name="produit" id="produit">
+
+  Produit
+  <select name="produit" id="produit" class="border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
   <?php 
   // Exécuter une requête SQL pour récupérer les éléments de la table
 $sql = "SELECT id_produit, libelle FROM produit";
@@ -87,16 +91,17 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
   </select>
-  <br>
-  <label class="block" for="adresse_livraison">
-    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+
     Adresse de livraison
-    </span>
-    <input type="text" name="adresse_livraison" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block 
-    rounded-md sm:text-sm focus:ring-1" placeholder="Entrez votre adresse" />
-    </label>
-  <input type="submit" name="submit" class="mt-1 px-3 py-2 bg-blue-300 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" value="Envoyer" />
+    <input type="text" name="adresse_livraison" placeholder="Adresse de livraison" class="border border-cyan-900 px-3 py-2 
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"/>
+
+    <input type="submit" name="submit" class="px-3 py-2  bg-amber-100 border border-cyan-900 text-cyan-950
+    rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600" 
+    value="Envoyer"/>
+
 </form>
+
 <br>
 <a href="index.php">Retour</a>
 
