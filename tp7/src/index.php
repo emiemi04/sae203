@@ -37,6 +37,14 @@
 </a>
 	</li>
 
+	<li>
+	<a href="suppclient.php" class="group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-cyan-900/50 hover:ring-cyan-800">
+		<div class="flex items-center space-x-3">
+			<h2 class="text-slate-900 group-hover:text-white text-sm font-semibold">Supprimer un client</h2>
+		</div>
+  <p class="text-slate-500 group-hover:text-white text-sm">En utilisant ce lien vous pourrez supprimer un client.</p>
+</a>
+	</li>
 </ul>
 
 
