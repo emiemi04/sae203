@@ -4,7 +4,7 @@ Page web créer en PHP, reliée à une base de donnée SQL.
 
 Vous trouverez les feuilles de codes de notre page intitulé "Système simple de gestion d'un magasin"
 
-Ceci est une interface web extrèment simple afin de :
+Ceci est une interface web extrèmement simple afin de :
 - créer un client
 - créer un produit
 - créer une commande
