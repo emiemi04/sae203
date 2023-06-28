@@ -1,6 +1,6 @@
 # sae203-tp7
 
-Page web créer en PHP, reliée à une base de donnée SQL.
+Page web créée en PHP, reliée à une base de donnée SQL.
 
 Vous trouverez les feuilles de codes de notre page intitulé "Système simple de gestion d'un magasin"
 
